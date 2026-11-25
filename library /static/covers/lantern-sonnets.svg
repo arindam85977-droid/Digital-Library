@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" width="300" height="420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#311042"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="420" rx="14" fill="url(#bg)"/>
+  <rect x="0" y="0" width="16" height="420" fill="#ffffff" opacity="0.14"/>
+  <rect x="24" y="18" width="258" height="384" rx="10" fill="none" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1.5"/>
+  <text x="36" y="46" font-family="system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="#f3e8ff" opacity="0.95">POETRY &AMP; DRAMA</text>
+  <g transform="translate(0, 18)">
+      <line x1="150" y1="35" x2="150" y2="75" stroke="#f3e8ff" stroke-width="2.5"/>
+      <rect x="122" y="75" width="56" height="78" rx="14" fill="#fef08a" opacity="0.85"/>
+      <circle cx="150" cy="114" r="46" fill="#fde047" opacity="0.22"/>
+      <path d="M55 185 Q100 170 150 185 T245 185" fill="none" stroke="#e9d5ff" stroke-width="3" opacity="0.7"/>
+    </g>
+  <foreignObject x="32" y="248" width="238" height="110">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Georgia,serif;color:#ffffff;font-size:23px;font-weight:700;line-height:1.18;text-shadow:0 2px 8px rgba(0,0,0,0.35);">
+      Songs of the Lantern Keeper
+    </div>
+  </foreignObject>
+  <text x="34" y="384" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff" opacity="0.9">Amelia Solis</text>
+</svg>

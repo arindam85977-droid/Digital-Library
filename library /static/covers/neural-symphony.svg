@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" width="300" height="420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#2dd4bf"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="420" rx="14" fill="url(#bg)"/>
+  <rect x="0" y="0" width="16" height="420" fill="#ffffff" opacity="0.14"/>
+  <rect x="24" y="18" width="258" height="384" rx="10" fill="none" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1.5"/>
+  <text x="36" y="46" font-family="system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="#ccfbf1" opacity="0.95">SCIENCE &AMP; TECH</text>
+  <g transform="translate(0, 18)">
+      <path d="M50 125 Q80 65 110 125 T170 125 T230 125 T265 125" fill="none" stroke="#ccfbf1" stroke-width="4" stroke-linecap="round"/>
+      <path d="M50 125 Q80 175 110 125 T170 125 T230 125 T265 125" fill="none" stroke="#5eead4" stroke-width="2.5" opacity="0.75"/>
+      <circle cx="150" cy="70" r="8" fill="#99f6e4"/>
+    </g>
+  <foreignObject x="32" y="248" width="238" height="110">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Georgia,serif;color:#ffffff;font-size:23px;font-weight:700;line-height:1.18;text-shadow:0 2px 8px rgba(0,0,0,0.35);">
+      The Neural Symphony
+    </div>
+  </foreignObject>
+  <text x="34" y="384" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff" opacity="0.9">Dr. Priya Nair</text>
+</svg>

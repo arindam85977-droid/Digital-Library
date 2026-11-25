@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign In — Library Hub</title>
+  <link rel="stylesheet" href="/static/css/styles.css"/>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+const { useState } = React;
+
+async function api(url, opts={}) {
+  const r = await fetch(url, { headers:{"Content-Type":"application/json"}, ...opts });
+  const d = await r.json().catch(()=>({}));
+  if (!r.ok) throw new Error(d.error||"Request failed");
+  return d;
+}
+
+function LoginApp() {
+  const [mode, setMode] = useState("login");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [pw, setPw] = useState("");
+  const [showPw, setShowPw] = useState(false);
+  const [err, setErr] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  async function submit(payload, m=mode) {
+    setErr(""); setBusy(true);
+    try {
+      await api(m==="login"?"/api/auth/login":"/api/auth/register",{method:"POST",body:JSON.stringify(payload)});
+      window.location.href="/";
+    } catch(e){ setErr(e.message); } finally{ setBusy(false); }
+  }
+
+  return (
+    <div className="login-page">
+      <header className="hdr">
+        <div className="wrap hdr-inner">
+          <a href="/" className="logo">
+            <span className="logo-icon">📚</span>
+            <div><span className="logo-text">Library Hub</span><span className="logo-sub">React + Python</span></div>
+          </a>
+          <a href="/" className="btn btn-out btn-sm">← Back to Library</a>
+        </div>
+      </header>
+
+      <main className="wrap login-grid">
+        <section className="login-show">
+          <div className="hero-badge" style={{background:"var(--primary-soft)",color:"var(--primary)",border:"1px solid var(--primary)"}}>Welcome to Library Hub</div>
+          <h1>Your Personal Global Library, Built with React &amp; Python.</h1>
+          <p className="muted">Sign in to sync your bookshelf, reading progress, notes, audiobooks, and subscription across 12 genres and 8 languages.</p>
+
+          <div className="login-feats">
+            <div className="login-feat"><div className="login-feat-icon">📖</div><div><strong>14 Books · 12 Genres</strong><p>Fiction, Sci-Fi, Science, Mystery, History, Self-Help, Business, Philosophy, Poetry, YA &amp; Kids.</p></div></div>
+            <div className="login-feat"><div className="login-feat-icon">🌍</div><div><strong>8-Language Translation &amp; Bilingual Reader</strong><p>Read side-by-side in English, Spanish, French, German, Hindi, Arabic, Japanese, or Chinese.</p></div></div>
+            <div className="login-feat"><div className="login-feat-icon">🎧</div><div><strong>Audiobooks, Notes &amp; Reviews</strong><p>Listen with speed &amp; sleep controls, write study notes, and rate books.</p></div></div>
+          </div>
+
+          <div className="login-covers">
+            <img src="/static/covers/silent-orbit.svg" alt="Cover"/>
+            <img src="/static/covers/gardens-of-kyoto.svg" alt="Cover"/>
+            <img src="/static/covers/atomic-calm.svg" alt="Cover"/>
+            <img src="/static/covers/fox-who-borrowed-stars.svg" alt="Cover"/>
+          </div>
+        </section>
+
+        <section className="login-card-wrap">
+          <div className="login-card">
+            <div className="auth-tabs">
+              <button className={`auth-tab ${mode==="login"?"on":""}`} onClick={()=>{setMode("login");setErr("")}}>Sign In</button>
+              <button className={`auth-tab ${mode==="register"?"on":""}`} onClick={()=>{setMode("register");setErr("")}}>Create Account</button>
+            </div>
+            <h2 style={{fontFamily:"var(--font-display)",margin:"0 0 6px"}}>{mode==="login"?"Sign In to Library Hub":"Create Your Account"}</h2>
+            <p className="muted" style={{marginBottom:16,fontSize:"0.88rem"}}>Enter your credentials to access your shelf.</p>
+
+            <form className="stack" onSubmit={e=>{e.preventDefault();submit({name,email,password:pw})}}>
+              {mode==="register" && <label><span>Full Name</span><input value={name} onChange={e=>setName(e.target.value)} placeholder="Alex Reader" required/></label>}
+              <label><span>Email</span><input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="demo@libraryhub.com" required/></label>
+              <label><span>Password</span><div className="pw-wrap"><input type={showPw?"text":"password"} value={pw} onChange={e=>setPw(e.target.value)} placeholder="Min 6 characters" required/><button type="button" className="icon-btn" onClick={()=>setShowPw(v=>!v)}>👁</button></div></label>
+              {err && <div className="form-err">{err}</div>}
+              <button type="submit" className="btn btn-pri btn-block" disabled={busy}>{busy?"Please wait...":mode==="login"?"Sign In":"Create Free Account"}</button>
+            </form>
+
+            <div className="demo-box">
+              <div><strong>Demo Account</strong><div className="muted" style={{fontSize:"0.76rem"}}>demo@libraryhub.com · library123</div></div>
+              <button className="btn btn-acc btn-sm" disabled={busy} onClick={()=>{setMode("login");submit({email:"demo@libraryhub.com",password:"library123"},"login")}}>One-Click Login</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<LoginApp/>);
+  </script>
+</body>
+</html>
